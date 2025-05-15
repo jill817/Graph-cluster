@@ -1,0 +1,64 @@
+CC := g++ -std=c++11
+sol := sls_solver/
+
+main: main.o sls_solver/solver.o sls_solver/model.o
+	$(CC) -O3 -o $@ $^
+
+%.o: %.cpp
+	$(CC) -c -O3 -o $@ $<
+
+solve: main
+	@echo ""
+	@echo "###################################"
+	@echo "# TEST: solve               #"
+	@echo "###################################" 
+	./main solve
+	@echo ""
+	@echo "###################################"
+	@echo "# solve done!                   #"
+	@echo "###################################"
+
+clean:
+	find . -name "*.o" | xargs rm -rf
+	rm -f main
+
+resolve: 
+	make clean
+	make solve
+
+demo_solve: main
+	@echo ""
+	@echo "###################################"
+	@echo "# TEST: demo solve               #"
+	@echo "###################################" 
+	./main dsolve
+	@echo ""
+	@echo "###################################"
+	@echo "# demo solve done!                   #"
+	@echo "###################################"
+
+demo_lp: main
+	@echo ""
+	@echo "###################################"
+	@echo "# TEST: demo write lp               #"
+	@echo "###################################" 
+	./main dlp
+	@echo ""
+	@echo "###################################"
+	@echo "# demo write lp done!                   #"
+	@echo "###################################"
+
+clz:
+	rm -rf experiment
+	make clean
+
+experiment: main
+	mkdir experiment
+	@echo ""
+	@echo "###################################"
+	@echo "# TEST: demo write lp               #"
+	@echo "###################################" 
+	sh run.sh
+	@echo ""
+	@echo "###################################"
+	@echo "# demo write lp done!                   #"

@@ -1,0 +1,20 @@
+start solve
+start read demand data
+read demand data
+demand data size: 330
+read demand data done
+start read supply data
+read supply data done
+start generate id convert
+generate id convert done
+start model problem
+model problem
+user num | supply num | demand num
+6001555 | 18 | 330
+Using random query selection.
+Selected query string: 18
+register vars done
+2.1 supply done
+2.2 demand done
+start solve
+write lp file done
